@@ -62,6 +62,8 @@ class CivMap:
         self.outside_count, self.glacier_count = self.count_area_outside()
         self.usable_size += self.outside_count
 
+        self.coast_distances = [self.get_coast_distance(pos[0], pos[1]) for pos in self.player_pos]
+
     def get_player(self, pos_list):
         #get starting unit place
         while self.raw_map[self.map_i][:3]!="u={":
@@ -126,8 +128,8 @@ class CivMap:
     def print_detailed(self):
         print "nplayers:", self.player_count
         for i in range(self.player_count):
-            pos = self.player_pos[i]
-            print "player", i, "coast distance:", self.get_coast_distance(pos[0], pos[1])
+            print "player", i, "coast distance:", self.coast_distances[i]
+        print "maximun coast distance:", max(self.coast_distances)
         continent_count = 1
         print "bad area is defined as desert, mountain or tundra"
         for size, bad_size, continent_player_count in self.continent_stat_lst:
@@ -139,10 +141,11 @@ class CivMap:
     def print_header(self, continent_count):
         print "general format: size(without bad)/player_count=size_per_player(without bad)"
         print "bad area is defined as desert, mountain or tundra"
+        print "coast: maximum coast distance"
         print "world usable   outside glacier ",
         for i in range(continent_count):
             print "continent%i                " % (i+1,),
-        print "filename"
+        print "coast filename"
 
     def print_short(self, max_continent_count):
         print "%5i/%3i=%3.0f " % (self.usable_size, self.player_count, self.usable_size/float(self.player_count),),
@@ -151,7 +154,7 @@ class CivMap:
             print "%5i(%5i)/%3i=%3.0f(%3.0f) " % (size, size-bad_size, continent_player_count, size/float(continent_player_count), (size-bad_size)/float(continent_player_count)),
         for i in range(max_continent_count - len(self.continent_stat_lst)):
             print " "*(5+2+5+1+3+1+3+2+3+1),
-        print self.filename
+        print "%3i   %s" % (max(self.coast_distances), self.filename)
 
 if __name__=="__main__":
     if len(sys.argv) < 2:

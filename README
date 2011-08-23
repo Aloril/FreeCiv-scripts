@@ -1,0 +1,11 @@
+analyse_starting_pos.py script counts how many player each continent has.
+Also count how many tiles each user has in each continent.
+Also print count how many tiles there outside player continetns not
+including glacier tiles.
+First start game, then save it and finally run this script.
+
+Usage, more detailed info:
+./analyse_starting_pos.py start.sav.bz2
+
+Table format for several files, here 3 files:
+./analyse_starting_pos.py start01.sav.bz2 start02.sav.bz2 start03.sav.bz2
