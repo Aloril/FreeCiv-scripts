@@ -10,5 +10,5 @@ Usage, more detailed info:
 Table format for several files, here 3 files:
 ./analyse_starting_pos.py start01.sav.bz2 start02.sav.bz2 start03.sav.bz2
 
-1000 kartan generointiesimerkki:
+Example of generating 1000 maps automatically:
 for i in {00..999}; do echo -e "set minplayers 0\nstart\nsave $i\nquit" | /usr/local/src/freeciv_svn_S2_3_compile/server/freeciv-server -r game.serv ; done
