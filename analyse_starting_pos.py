@@ -85,7 +85,7 @@ class CivMap:
             y = y % len(self.geomap)
             x = x % len(self.geomap[0])
             if self.geomap[y][x] not in " !:":
-                if self.geomap[y][x] in "dmt":
+                if self.geomap[y][x] in "dmta":
                     bad_size += 1
                 self.geomap[y] = self.geomap[y][:x] + "!" + self.geomap[y][x+1:]
                 size += 1
@@ -131,7 +131,7 @@ class CivMap:
             print "player", i, "coast distance:", self.coast_distances[i]
         print "maximun coast distance:", max(self.coast_distances)
         continent_count = 1
-        print "bad area is defined as desert, mountain or tundra"
+        print "bad area is defined as desert, mountain, tundra or glacier"
         for size, bad_size, continent_player_count in self.continent_stat_lst:
             print "continent %i size: %i (without bad: %i), players: %i, size/player: %.1f (without bad %.1f)" % (continent_count, size, size-bad_size, continent_player_count, size/float(continent_player_count), (size-bad_size)/float(continent_player_count))
             continent_count += 1
