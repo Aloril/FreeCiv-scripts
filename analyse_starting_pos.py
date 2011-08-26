@@ -140,7 +140,7 @@ class CivMap:
 
     def print_header(self, continent_count):
         print "general format: size(without bad)/player_count=size_per_player(without bad)"
-        print "bad area is defined as desert, mountain or tundra"
+        print "bad area is defined as desert, mountain, tundra or glacier"
         print "coast: maximum coast distance"
         print "world usable   outside glacier ",
         for i in range(continent_count):
